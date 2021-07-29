@@ -527,12 +527,17 @@ public class DiscreteScrollLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public boolean isAutoMeasureEnabled() {
-        return true;
+        return false;
     }
 
     @Override
     public int computeVerticalScrollRange(@NonNull RecyclerView.State state) {
         return computeScrollRange(state);
+    }
+
+    @Override
+    public boolean supportsPredictiveItemAnimations() {
+        return false;
     }
 
     @Override
