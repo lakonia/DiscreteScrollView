@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -269,11 +270,13 @@ public class DiscreteScrollLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public void onItemsRemoved(@NonNull RecyclerView recyclerView, int positionStart, int itemCount) {
+        Log.d("DISCRETESCROLLLM", "onItemsRemoved --> "+currentPosition+" -- "+positionStart+" -- "+ itemCount);
         int newPosition = currentPosition;
         if (recyclerViewProxy.getItemCount() == 0) {
             newPosition = NO_POSITION;
         } else if (currentPosition >= positionStart) {
-            if (currentPosition < positionStart + itemCount) {
+//            if (currentPosition < positionStart + itemCount) {
+            if (currentPosition < itemCount) {
                 //If currentPosition is in the removed items, then the new item became current
                 currentPosition = NO_POSITION;
             }
